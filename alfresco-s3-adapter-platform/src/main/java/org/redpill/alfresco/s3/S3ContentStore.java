@@ -59,6 +59,7 @@ public class S3ContentStore extends AbstractContentStore
   private String rootDirectory;
   private String endpoint;
   private String signatureVersion;
+  private Boolean pathStyleAccessEnabled;
   private int connectionTimeout = 50000;
   private int maxErrorRetry = 5;
   private long connectionTTL = 60000L;
@@ -95,6 +96,10 @@ public class S3ContentStore extends AbstractContentStore
    */
   public void setConnectionTimeout(int connectionTimeout) {
     this.connectionTimeout = connectionTimeout;
+  }
+
+  public void setPathStyleAccessEnabled(Boolean pathStyleAccessEnabled) {
+    this.pathStyleAccessEnabled = pathStyleAccessEnabled;
   }
 
   @Override
@@ -157,6 +162,7 @@ public class S3ContentStore extends AbstractContentStore
       EndpointConfiguration endpointConf = new EndpointConfiguration(endpoint, regionName);
       AmazonS3ClientBuilder s3builder = AmazonS3ClientBuilder
               .standard()
+              .withPathStyleAccessEnabled(pathStyleAccessEnabled)
               .withEndpointConfiguration(endpointConf)
               .withCredentials(new AWSStaticCredentialsProvider(credentials))
               .withClientConfiguration(clientConfiguration);
@@ -169,6 +175,7 @@ public class S3ContentStore extends AbstractContentStore
 
       AmazonS3ClientBuilder s3builder = AmazonS3ClientBuilder
               .standard()
+              .withPathStyleAccessEnabled(pathStyleAccessEnabled)
               .withRegion(regionName)
               .withCredentials(new AWSStaticCredentialsProvider(credentials))
               .withClientConfiguration(clientConfiguration);
@@ -365,5 +372,6 @@ public class S3ContentStore extends AbstractContentStore
     Assert.isTrue(connectionTTL >= 0);
     Assert.isTrue(connectionTimeout >= 0);
     Assert.isTrue(multipartUploadThreshold >= 0);
+    Assert.notNull(pathStyleAccessEnabled);
   }
 }

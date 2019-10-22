@@ -14,7 +14,7 @@
   </parent>
   <properties>
     <!-- Alfresco Maven Plugin version to use -->
-    <alfresco.sdk.version>4.0.0</alfresco.sdk.version>
+    <alfresco.sdk.version>3.0.2-SNAPSHOT</alfresco.sdk.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <!-- Alfresco Data directory, which will contain:
         Content Store (i.e. the files we upload)
@@ -403,7 +403,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <version>3.1.1</version>
+        <version>2.10.4</version>
         <executions>
           <execution>
             <id>attach-javadocs</id>
@@ -413,7 +413,6 @@
           </execution>
         </executions>
         <configuration>
-          <source>8</source>
           <quiet>true</quiet>
         </configuration>
       </plugin>

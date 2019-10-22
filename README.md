@@ -136,3 +136,4 @@ log4j.logger.org.redpill.alfresco.s3=trace
 log4j.logger.com.amazonaws.requestId=debug
 log4j.logger.com.amazonaws.request=debug
 ``` 
+"# alfresco-s3-adapter-6.2" 
